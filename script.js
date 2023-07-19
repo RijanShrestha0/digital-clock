@@ -7,6 +7,42 @@ font-family: 'Courier New', Courier, monospace;
 
 `
 
+// theme
+
+const div = document.createElement("div")
+const dark_mode = document.createElement("a")
+dark_mode.textContent="Dark"
+div.appendChild(dark_mode)
+div.style.display="flex"
+div.style.justifyContent="right"
+div.style.margin="50px"
+dark_mode.style.cssText=`
+margin-right: 2vw;
+cursor: pointer;
+`
+
+dark_mode.addEventListener("click", function(){
+    body.style.backgroundColor=`#222`
+    body.style.color=`#fff`
+})
+
+const light_mode = document.createElement("a")
+light_mode.textContent="Light"
+body.appendChild(div)
+div.appendChild(light_mode)
+
+light_mode.style.cssText=`
+cursor: pointer;
+`
+
+light_mode.addEventListener("click", function(){
+    body.style.backgroundColor=`#fff`
+    body.style.color=`#222`
+})
+
+
+// display
+
 const time = document.createElement("div")
 time.setAttribute("id", "time")
 body.appendChild(time)
@@ -18,6 +54,8 @@ font-size: 85px;
 font-weight: bold;
 
 `
+
+// Show Timing
 
 const time_hour = document.createElement("div")
 time_hour.setAttribute("style", "display: inline-block")
@@ -44,6 +82,8 @@ time_second.setAttribute("id", "second")
 time_second.setAttribute("style", "display: inline-block")
 time.appendChild(time_second)
 
+
+// logic for clock
 
 setInterval(() => {
     
