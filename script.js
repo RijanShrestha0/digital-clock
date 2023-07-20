@@ -4,6 +4,7 @@ margin: 0;
 background: #222;
 color: #fff;
 font-family: monospace;
+width: 1500px;
 `
 
 // theme
