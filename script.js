@@ -3,8 +3,7 @@ body.style.cssText=`
 margin: 0;
 background: #222;
 color: #fff;
-font-family: 'Courier New', Courier, monospace;
-
+font-family: monospace;
 `
 
 // theme
@@ -47,10 +46,9 @@ const time = document.createElement("div")
 time.setAttribute("id", "time")
 body.appendChild(time)
 time.style.cssText=`
-display: flex;
-justify-content: center;
-margin: 350px 0;
-font-size: 85px;
+text-align:center;
+margin: 30vh 0 0 0;
+font-size: 100px;
 font-weight: bold;
 
 `
@@ -63,7 +61,6 @@ time_hour.setAttribute("id", "hour")
 time.appendChild(time_hour)
 
 const dots = document.createElement("a")
-dots.textContent=":"
 dots.setAttribute("style", "font-weight:bolder;")
 time.appendChild(dots)
 
@@ -72,15 +69,38 @@ time_minutes.setAttribute("id", "minutes")
 time_minutes.setAttribute("style", "display: inline-block")
 time.appendChild(time_minutes)
 
-const dot = document.createElement("a")
-dot.textContent=":"
-dot.setAttribute("style", "font-weight:bolder;")
-time.appendChild(dot)
-
 const time_second = document.createElement("div")
 time_second.setAttribute("id", "second")
 time_second.setAttribute("style", "display: inline-block")
 time.appendChild(time_second)
+
+const time_time = document.createElement("div")
+time_time.setAttribute("id", "day")
+time_time.setAttribute("style", "display:block;")
+time.appendChild(time_time)
+
+const date = document.createElement("div")
+body.append(date)
+const time_date = document.createElement("a")
+time_date.setAttribute("id", "date")
+date.appendChild(time_date)
+const time_month = document.createElement("a")
+time_month.setAttribute("id", "month")
+date.appendChild(time_month)
+const time_year = document.createElement("a")
+time_year.setAttribute("id", "year")
+date.appendChild(time_year)
+
+date.style.cssText=`
+text-align: center;
+font-size: 30px;
+margin-left: -150px;
+`
+
+const day =document.createElement("div")
+body.append(day)
+const time_day = document.createElement("a")
+day.appendChild(time_day)
 
 
 // logic for clock
@@ -88,9 +108,47 @@ time.appendChild(time_second)
 setInterval(() => {
     
     let currenttime = new Date();
-
-    time_hour.innerHTML = (currenttime.getHours() <10?"0":"") + currenttime.getHours();
-    time_minutes.innerHTML = (currenttime.getMinutes() <10?"0":"") + currenttime.getMinutes();
+    time_hour.innerHTML = (currenttime.getHours() <=10? "0":"") + currenttime.getHours() + ':'
+    time_minutes.innerHTML = (currenttime.getMinutes() <=10? "0":"") + currenttime.getMinutes() + ':' 
     time_second.innerHTML = (currenttime.getSeconds() <10?"0":"") + currenttime.getSeconds();
 
-}, 1000);
+let todaysdate = new Date();
+time_date.innerHTML = (todaysdate.getDate()) + "/"
+time_month.innerHTML = (todaysdate.getMonth()) + "/"
+time_year.innerHTML = (todaysdate.getFullYear())
+
+}, 1000);   
+
+let todaysday = new Date();
+let baar = todaysday.getDay();
+switch (baar) {
+    case 0:
+        baar = "(Sunday)";
+        break;
+
+    case 1:
+        baar = "(Monday)";
+        break;
+    case 2:
+       baar = "(Tuesday)";
+        break;
+    case 3:
+        baar = "(Wednesday)";
+        break;
+    case 4:
+        baar = "(Thursday)";
+        break;
+    case 5:
+        baar = "(Friday)";
+        break;
+    case 6:
+        baar = "(Saturday)";
+    }
+    time_day.innerHTML  = baar;
+    time_day.style.cssText=`
+    display: flex;
+    justify-content: center;
+    margin-right: -180px;
+    margin-top: -35px;
+    font-size: 25px
+    `
