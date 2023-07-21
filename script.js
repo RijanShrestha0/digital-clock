@@ -4,7 +4,6 @@ margin: 0;
 background: #222;
 color: #fff;
 font-family: monospace;
-width: 1500px;
 `
 
 // theme
@@ -75,6 +74,11 @@ time_second.setAttribute("id", "second")
 time_second.setAttribute("style", "display: inline-block")
 time.appendChild(time_second)
 
+const time_milli = document.createElement("div")
+time_milli.setAttribute("id", "second")
+time_milli.setAttribute("style", "display: inline-block")
+time.appendChild(time_milli)
+
 const time_time = document.createElement("div")
 time_time.setAttribute("id", "day")
 time_time.setAttribute("style", "display:block;")
@@ -109,9 +113,10 @@ day.appendChild(time_day)
 setInterval(() => {
     
     let currenttime = new Date();
-    time_hour.innerHTML = (currenttime.getHours() <=10? "0":"") + currenttime.getHours() + ':'
-    time_minutes.innerHTML = (currenttime.getMinutes() <=10? "0":"") + currenttime.getMinutes() + ':' 
-    time_second.innerHTML = (currenttime.getSeconds() <10?"0":"") + currenttime.getSeconds();
+    time_hour.innerHTML = (currenttime.getHours() <=9? "0":"") + currenttime.getHours() + ':'
+    time_minutes.innerHTML = (currenttime.getMinutes() <=9? "0":"") + currenttime.getMinutes() + ':' 
+    time_second.innerHTML = (currenttime.getSeconds() <10?"0":"") + currenttime.getSeconds(); + ':'
+    // time_milli.innerHTML = (currenttime.getMilliseconds() <100? "0":"") + currenttime.getMilliseconds();
 
 let todaysdate = new Date();
 time_date.innerHTML = (todaysdate.getDate()) + "/"
@@ -122,6 +127,7 @@ time_year.innerHTML = (todaysdate.getFullYear())
 
 let todaysday = new Date();
 let baar = todaysday.getDay();
+
 switch (baar) {
     case 0:
         baar = "(Sunday)";
@@ -145,11 +151,12 @@ switch (baar) {
     case 6:
         baar = "(Saturday)";
     }
-    time_day.innerHTML  = baar;
+    
+    time_day.innerHTML = baar;
     time_day.style.cssText=`
     display: flex;
     justify-content: center;
-    margin-right: -180px;
-    margin-top: -35px;
+    margin-left: 150px;
+    margin-top: -34px;
     font-size: 25px
     `
