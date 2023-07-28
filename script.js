@@ -115,17 +115,18 @@ setInterval(() => {
     let currenttime = new Date();
     time_hour.innerHTML = (currenttime.getHours() <=9? "0":"") + currenttime.getHours() + ':'
     time_minutes.innerHTML = (currenttime.getMinutes() <=9? "0":"") + currenttime.getMinutes() + ':' 
-    time_second.innerHTML = (currenttime.getSeconds() <10?"0":"") + currenttime.getSeconds(); + ':'
-    // time_milli.innerHTML = (currenttime.getMilliseconds() <100? "0":"") + currenttime.getMilliseconds();
+    time_second.innerHTML = (currenttime.getSeconds() <10?"0":"") + currenttime.getSeconds() + ':'
+    time_milli.innerHTML = (currenttime.getMilliseconds() <100? "0":"") + currenttime.getMilliseconds();
 
 let todaysdate = new Date();
 time_date.innerHTML = (todaysdate.getDate()) + "/"
 time_month.innerHTML = (todaysdate.getMonth()) + "/"
 time_year.innerHTML = (todaysdate.getFullYear())
 
-}, 1000);   
+}, 150);   
 
 let todaysday = new Date();
+
 let baar = todaysday.getDay();
 
 switch (baar) {
